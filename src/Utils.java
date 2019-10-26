@@ -3,11 +3,11 @@ import java.util.ArrayList;
 
 class Utils {
     private int nullPoint = 0;
-    private Point[] point = new Point[7]; //point arr
+    private Point[] point = new Point[7];
     private Point[] validPoint;
     private Vector[] vector = new Vector[point.length];
     private double[] derivative = new double[vector.length];
-    private Point pointArtil = new Point(4.5, 6); //artilery
+    private Point pointArtil = new Point(4.5, 6);
     private SecurePoints[] sourcePoint;
     private Point[] allPoint;
     private Line[] allLines;
@@ -140,7 +140,6 @@ class Utils {
 
         for (int i = 0; i < allPoint.length; i++) {
             allPoint[i] = i % 2 == 0 ? mass1[i / 2] : mass2[(i - 1) / 2];
-            System.out.println("AllPoint"+allPoint[i].getX()+"=="+allPoint[i].getY());
         }
 
         positions = new LocalPosition[allPoint.length];
@@ -191,8 +190,8 @@ class Utils {
                 }
             }
 
-            for (int i = size - x; i < x; i++) {  //двигаемся слева направо
-                if (posit[i].getDistance() > posit[i + 1].getDistance()) {      // если текущий элемент больше следующего,меняем!
+            for (int i = size - x; i < x; i++) {
+                if (posit[i].getDistance() > posit[i + 1].getDistance()) {
                     // swap
                     LocalPosition temp = posit[i];
                     posit[i] = posit[i + 1];
@@ -229,15 +228,6 @@ class Utils {
             }
 
         }
-        for (int i = 0; i <cPoint.length ; i++) {
-            System.out.println("Cpoint"+cPoint[i].getPoint().getX()+"=="+cPoint[i].getPoint().getY());
-
-        }
-        for (int i = 0; i <fPoint.length ; i++) {
-            System.out.println("Fpoint"+fPoint[i].getPoint().getX()+"=="+fPoint[i].getPoint().getY());
-
-        }
-
 
         nearPointSorting(cPoint);
 
@@ -256,15 +246,7 @@ class Utils {
             }
 
         }
-        System.out.println(decel.length);
-        for (int i = 0; i <decel.length ; i++) {
-            System.out.println("Index of near Point  "+decel[i]);
 
-        }
-        for (int i = 0; i <decel.length ; i++) {
-            System.out.println("Index of near Point XXX "+allPoint[decel[i]].getX());
-
-        }
 
         boolean swap = false;
         int temp;
@@ -284,7 +266,6 @@ class Utils {
 
         }
         int n = mass.length;
-        //Переменная, которая будет использоваться при обмене элементов
         LocalPosition boom;
 
         for (int i = 0; i < n/2; i++) {
@@ -292,10 +273,7 @@ class Utils {
             mass[n-i-1] = mass[i];
             mass[i] = boom;
         }
-        for (int i = 0; i <cPoint.length ; i++) {
-            System.out.println("Index of near Point After   "+cPoint[i].getPoint().getX());
 
-        }
         farPointSorting(fPoint);
     }
 
@@ -310,15 +288,7 @@ class Utils {
             }
 
         }
-        System.out.println(decel.length);
-        for (int i = 0; i <decel.length ; i++) {
-            System.out.println("Index of far Point  "+decel[i]);
 
-        }
-        for (int i = 0; i <decel.length ; i++) {
-            System.out.println("Index of far Point XXX "+allPoint[decel[i]].getX());
-
-        }
 
         boolean swap = false;
         int temp;
@@ -337,10 +307,6 @@ class Utils {
             mass[i].setPoint(allPoint[decel[i]]);
 
         }
-        for (int i = 0; i <mass.length ; i++) {
-            System.out.println("Index of far Point After   "+mass[i].getPoint().getX());
-
-        }
         setFarLine(fPoint, pointArtil);
     }
 
@@ -350,10 +316,7 @@ class Utils {
         for (int i = 0; i < farLine.length; i++) {
             farLine[i] = new Line(artillery.getX(), massFar[i].getPoint().getX(), artillery.getY(), massFar[i].getPoint().getY());
         }
-        for (int i = 0; i <farLine.length ; i++) {
-            System.out.println("FarLine koef"+ "\nA: "+farLine[i].getA()+"\nB: "+farLine[i].getB()+"\nC: "+farLine[i].getC());
 
-        }
         neareLineCross(cPoint);
 
 
@@ -365,15 +328,10 @@ class Utils {
             nearCross[i] = new Line(massNear[i].getPoint().getX(), massNear[i+1].getPoint().getX(), massNear[i].getPoint().getY(), massNear[i+1].getPoint().getY());
 
         }
-        for (int i = 0; i <nearCross.length ; i++) {
-            System.out.println("nearCross koef"+ "\nA: "+nearCross[i].getA()+"\nB: "+nearCross[i].getB()+"\nC: "+nearCross[i].getC());
-
-        }
-        System.out.println("nearCross koef111111111"+ "\nA: "+nearCross[1].getA()+"\nB: "+nearCross[1].getB()+"\nC: "+nearCross[1].getC());
-        System.out.println("nearCross koef111111111"+ "\nA: "+nearCross[2].getA()+"\nB: "+nearCross[2].getB()+"\nC: "+nearCross[2].getC());
 
 
-        //lineVsLine(nearCross,farLine);
+
+
         checkCross();
 
     }
@@ -418,31 +376,7 @@ class Utils {
 
         }
 
-
-
-        for (int i = 0; i <validFarLine.length ; i++) {
-            System.out.println("11111111"+farLine[indexFarPoint[i]].getA());
-            System.out.println("22222222"+validFarLine[i].getA());
-
-        }
-
-
-        for (int i = 0; i <indexNearPoint.length ; i++) {
-            System.out.println("Cpof:"+cPoint[indexNearPoint[i]].getPoint().getX()+" "+cPoint[indexNearPoint[i]].getPoint().getY());
-        }
-        for (int i = 0; i <indexFarPoint.length ; i++) {
-            System.out.println("Fpof:"+fPoint[indexFarPoint[i]].getPoint().getX()+" "+fPoint[indexFarPoint[i]].getPoint().getY());
-        }
-
-
-
-        System.out.println("indexNear"+indexNearPoint.length);
-        System.out.println("indexFar"+indexFarPoint.length);
-        System.out.println("cPoint"+cPoint.length);
-        System.out.println("fPoint"+fPoint.length);
-
         lineVsLine();
-
     }
     private void lineVsLine(){
         nearLine2Segment = new Segment[cPoint.length];
@@ -450,29 +384,12 @@ class Utils {
         System.out.println(sizeCrossLine);
         crossSegment = new Segment[sizeCrossLine];
 
-
-        System.out.println(farLine.length);
-        for (int i = 0; i <validFarLine.length ; i++) {
-            System.out.println("A:  "+validFarLine[i].getA()+"\nB:  "+validFarLine[i].getB()+"\nC:  "+validFarLine[i].getC());
-            System.out.println("----");
-
-        }
         for (int i = 0; i <farLine2Segment.length ; i++) {
             farLine2Segment[i] = new Segment(validFarLine[i].getA(),validFarLine[i].getB(),validFarLine[i].getC());
 
 
         }
-        /*for (int i = 0; i <farLine2Segment.length-1 ; i++) {
-            farLine2Segment[i] = new Segment(farLine[indexFarPoint[i]].getA(),farLine[indexFarPoint[i]].getB(),farLine[indexFarPoint[i]].getC());
 
-
-        }*/
-
-
-        for (int i = 0; i <nearCross.length ; i++) {
-            System.out.println("nearCross"+nearCross[indexNearPoint[i]].getA()+"+"+nearCross[indexNearPoint[i]].getB()+""+nearCross[indexNearPoint[i]].getC());
-
-        }
         for (int i = 0; i <nearLine2Segment.length-1; i++) {
             nearLine2Segment[i] = new Segment(nearCross[indexNearPoint[i]].getA(),nearCross[indexNearPoint[i]].getB(),nearCross[indexNearPoint[i]].getC());
 
@@ -483,27 +400,6 @@ class Utils {
 
 
         }
-
-        for (int i = 0; i <crossSegment.length ; i++) {
-            System.out.println(nearLine2Segment[i].getEndB()+"=="+nearLine2Segment[i].getStartA());
-
-        }
-        System.out.println("----------------------------------------------------------------");
-        for (int i = 0; i <crossSegment.length ; i++) {
-            System.out.println(farLine2Segment[i].getEndB()+"=="+farLine2Segment[i].getStartA());
-
-        }
-
-        for (int i = 0; i <crossSegment.length ; i++) {
-
-            System.out.println("x:  "+crossSegment[i].getX()+"\ny:  "+crossSegment[i].getY());
-
-        }
-        for (int i = 0; i <crossSegment.length ; i++) {
-            System.out.println("CrossSegment"+crossSegment[i]);
-
-        }
-
 
         creatDistance();
     }
